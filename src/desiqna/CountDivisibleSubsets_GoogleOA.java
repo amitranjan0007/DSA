@@ -16,6 +16,25 @@ Enter the 4 Number
 3
 6
 result--2 => [{1,2},{3,6}]
+
+
+Example 2:
+Enter the value of M
+3
+Enter the value of K
+4
+Enter the length of array
+6
+Enter the 6 Number
+1
+3
+2
+4
+2
+1
+count SubsetSum Equal to K is 6
+count SubsetSum Divsiable by K is 22
+count Subset Exactly K Size is 4
 * */
 
 /*
