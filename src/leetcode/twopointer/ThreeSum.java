@@ -47,7 +47,7 @@ public class ThreeSum {
         for(int i=0;i<n-2;i++){
             int newTarget = target-arr[i];
             int[] twoSum=solveTwoSum(arr,i+1,n-1,newTarget);
-            if(twoSum.length==2){
+            if(twoSum.length>0){
                 ArrayList<Integer> tmpList=new ArrayList<>();
                 tmpList.add(arr[i]);
                 tmpList.add(twoSum[0]);
