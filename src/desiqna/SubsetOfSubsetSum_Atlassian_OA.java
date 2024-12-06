@@ -52,7 +52,7 @@ public class SubsetOfSubsetSum_Atlassian_OA {
         Set<Integer> possibleSums = new HashSet<>();
 
             for (int k = 0; k <= totalSum; k++) {
-                if (dp[n][k][k]) {
+                if (dp[n][K][k]) {
                     possibleSums.add(k);
                 }
             }
