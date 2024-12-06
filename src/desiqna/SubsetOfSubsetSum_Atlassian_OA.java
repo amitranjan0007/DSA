@@ -5,12 +5,15 @@ import java.util.Set;
 
 public class SubsetOfSubsetSum_Atlassian_OA {
     /*
+        Session Link : https://docs.google.com/document/d/14Q6kK6-utuOEhLUpJ7cr9FMV2vcT3DNJBGl01QkjUDY/edit?tab=t.0
+
        Observation : First you select all the subsets from array whose sum is K
        now -> select a subset of those subset and tell me if it is possible to reach a particular sum value
        and finally report how many different sum values are possible.
        dp[i][j][k] = consider the first “i” elements; is there a subset with sum “j” if yes;
        if there is a subset of this subset with sum k if yes print true.
     */
+
     public static void main(String[] args) {
         int arr[]={5,6,1,10,12,2};
         int K=18;
