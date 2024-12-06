@@ -36,13 +36,13 @@ public class SubsetOfSubsetSum_Atlassian_OA {
                     dp[i][j][k] |= dp[i - 1][j][k];
 
                     // Case 2: Selecting the current element for subset but not for sub-subset
-                    if (j >= 1 && k >= arr[i - 1]) { // Ensure subset size and sum constraints
-                        dp[i][j][k] |= dp[i - 1][j - 1][k - arr[i - 1]];
+                    if (j - arr[i-1]>=0) {
+                        dp[i][j][k] |= dp[i - 1][j - arr[i-1]][k];
                     }
 
                     // Case 3: Selecting the current element for both subset and sub-subset
-                    if (j >= 1 && k >= arr[i - 1]) { // Ensure subset size and sum constraints
-                        dp[i][j][k] |= dp[i - 1][j - 1][k - arr[i - 1]];
+                    if (j-arr[i-1] >= 0 && k-arr[i-1]>=0) { // Ensure subset size and sum constraints
+                        dp[i][j][k] |= dp[i - 1][j - arr[i-1]][k - arr[i-1]];
                     }
                 }
             }
@@ -50,13 +50,13 @@ public class SubsetOfSubsetSum_Atlassian_OA {
 
         // Find all different sums achievable
         Set<Integer> possibleSums = new HashSet<>();
-        for (int j = 0; j <= K; j++) { // Subset size constraints
-            for (int k = 0; k <= totalSum; k++) { // Subset sum constraints
-                if (dp[n][j][k]) {
+
+            for (int k = 0; k <= totalSum; k++) {
+                if (dp[n][k][k]) {
                     possibleSums.add(k);
                 }
             }
-        }
+
 
         // Print all unique sums
         for (int num : possibleSums) {
