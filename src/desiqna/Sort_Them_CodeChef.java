@@ -87,7 +87,7 @@ public class Sort_Them_CodeChef {
         /*
           dp[i]---> min number of moves required to sort the array from 0..i
         * */
-        dp[0][0]=1;
+        dp[0][0]=0;
         dp[0][1]=1;
 
         for(int i=1;i<s.length();i++){
