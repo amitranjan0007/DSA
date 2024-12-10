@@ -77,7 +77,7 @@ public class Sort_Them_CodeChef {
 
         for(int i=0;i<p.length();i++){
             int x= 27-pMap.get(p.charAt(i));//pMap storing character at i+1
-            transformMap.put(p.charAt(i), p.charAt(x-1));//Original position of the char is x-1
+            transformMap.put(p.charAt(i), p.charAt(x - 1));
         }
 
         int[][] dp=new int[sLen][2];
@@ -91,13 +91,19 @@ public class Sort_Them_CodeChef {
         dp[0][1]=1;
 
         for(int i=1;i<s.length();i++){
+
+            char prev = s.charAt(i - 1);
+            char curr = s.charAt(i);
+            char tPrev = transformMap.get(prev);
+            char tCurr = transformMap.get(curr);
+
            // Performing no transformation at i
-            if(s.charAt(i-1)<=s.charAt(i)) dp[i][0]= Math.min(dp[i-1][0],dp[i][0]);
-            if(transformMap.get(s.charAt(i-1))>s.charAt(i))dp[i][0]=Math.min(dp[i-1][1],dp[i][0]);
+            if(prev<=curr) dp[i][0]= Math.min(dp[i-1][0],dp[i][0]);
+            if(tPrev>curr)dp[i][0]=Math.min(dp[i-1][1],dp[i][0]);
 
             //performing transformation at i idx
-            if(s.charAt(i-1)<=transformMap.get(s.charAt(i))) dp[i][1]= 1+Math.min(dp[i-1][0],dp[i][1]);
-            if(transformMap.get(s.charAt(i-1))>transformMap.get(s.charAt(i)))dp[i][1]=Math.min(dp[i-1][1],dp[i][1]);
+            if(prev<=tCurr) dp[i][1]= 1+Math.min(dp[i-1][0],dp[i][1]);
+            if(tPrev>tCurr)dp[i][1]=1+Math.min(dp[i-1][1],dp[i][1]);
         }
        int res=Math.min(dp[sLen-1][1],dp[sLen-1][0]);;
         return res==Integer.MAX_VALUE ?-1:res;
