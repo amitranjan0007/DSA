@@ -102,8 +102,8 @@ public class Sort_Them_CodeChef {
             if(tPrev>curr)dp[i][0]=Math.min(dp[i-1][1],dp[i][0]);
 
             //performing transformation at i idx
-            if(prev<=tCurr) dp[i][1]= Math.min(dp[i-1][0],1+dp[i][1]);
-            if(tPrev<=tCurr)dp[i][1]=1+Math.min(dp[i-1][1],1+dp[i][1]);
+            if(prev<=tCurr) dp[i][1]= 1+Math.min(dp[i-1][0],dp[i][1]);
+            if(tPrev<=tCurr)dp[i][1]=1+Math.min(dp[i-1][1],dp[i][1]);
             //if(tPrev>tCurr)dp[i][1]=1+Math.min(dp[i-1][1],dp[i][1]);
         }
        int res=Math.min(dp[sLen-1][1],dp[sLen-1][0]);;
