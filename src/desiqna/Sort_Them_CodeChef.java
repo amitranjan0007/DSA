@@ -39,6 +39,23 @@ public class Sort_Them_CodeChef {
 
                     -> there can only be two letters possible at each index and they will keep changing to each other back to back
 
+       Sample Input:
+        3
+        4
+        akje
+        xidvzocubhrejqkmfntyglaspw
+        6
+        yqobbi
+        nhxmlarqswzkpgvibejtcyfuod
+        14
+        abewamesdwgxzy
+        njodhifwqrzykpvxmlgtsaubce
+
+      Expected output:
+         2
+        -1
+         6
+
     * */
     public static void main (String[] args) throws java.lang.Exception
     {
@@ -61,7 +78,7 @@ public class Sort_Them_CodeChef {
 
 
         HashMap<Character,Integer> pMap=new HashMap<>();
-          for(int i=0;i<p.length();i++){
+          for(int i=0;i<26;i++){
               pMap.put(p.charAt(i),i+1);
           }
           /*
@@ -80,8 +97,8 @@ public class Sort_Them_CodeChef {
             transformMap.put(p.charAt(i), p.charAt(x - 1));
         }
 
-        int[][] dp=new int[sLen][2];
-        for(int[] nums:dp){
+        long[][] dp=new long[sLen][2];
+        for(long[] nums:dp){
             Arrays.fill(nums,Integer.MAX_VALUE);
         }
         /*
@@ -97,16 +114,32 @@ public class Sort_Them_CodeChef {
             char tPrev = transformMap.get(prev);
             char tCurr = transformMap.get(curr);
 
+
+
+
            // Performing no transformation at i
             if(prev<=curr) dp[i][0]= Math.min(dp[i-1][0],dp[i][0]);
-            if(tPrev>curr)dp[i][0]=Math.min(dp[i-1][1],dp[i][0]);
+            if(tPrev<=curr)dp[i][0]=Math.min(dp[i-1][1],dp[i][0]);
+            /*
+             below is invalid case, and we already intialised with INT_MAX,
+               blow lines means after doing all the stuff above then also my previous element is bigger then
+               current so we can't have sorted array
+              if(tPrev>curr)dp[i][1]=1+Math.min(dp[i-1][1],dp[i][1]);
+            * */
+
 
             //performing transformation at i idx
-            if(prev<=tCurr) dp[i][1]= 1+Math.min(dp[i-1][0],dp[i][1]);
-            if(tPrev<=tCurr)dp[i][1]=1+Math.min(dp[i-1][1],dp[i][1]);
-            //if(tPrev>tCurr)dp[i][1]=1+Math.min(dp[i-1][1],dp[i][1]);
+            if(prev<=tCurr) dp[i][1]= Math.min(1+dp[i-1][0],dp[i][1]);
+            if(tPrev<=tCurr)dp[i][1]= Math.min(1+dp[i-1][1],dp[i][1]);
+             /*
+             below is invalid case, and we already intialised with INT_MAX
+              blow lines means after doing all the stuff above then also my previous element is bigger then
+               transformed current idx so we can't have sorted array
+             if(tPrev>tCurr)dp[i][1]=1+Math.min(dp[i-1][1],dp[i][1]);
+            * */
+
         }
-       int res=Math.min(dp[sLen-1][1],dp[sLen-1][0]);;
+       int res=(int)Math.min(dp[sLen-1][1],dp[sLen-1][0]);;
         return res==Integer.MAX_VALUE ?-1:res;
 
     }
