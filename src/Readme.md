@@ -1,4 +1,4 @@
-Dp: 14 -> 24 (Simple DP)
+Dp: 15 -> 24 (Simple DP)
     25 -> 33 (Subarray DP)
     34 -> 54(Partition Dp)
 
