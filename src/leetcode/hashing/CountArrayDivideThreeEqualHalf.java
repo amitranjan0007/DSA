@@ -4,6 +4,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class CountArrayDivideThreeEqualHalf {
+    /*
+    Question : https://docs.google.com/document/d/1OCAb20_tmqR3F1euecjQGxE__0gjdfEvdFeoUf2cO3I/edit?tab=t.0
+
+    * */
     public static void main(String[] args) {
         countToDivideArrayEqualsHalf();
         countToDivideArrayEqualsOptimal();
