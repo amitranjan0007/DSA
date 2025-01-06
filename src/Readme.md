@@ -1,4 +1,4 @@
-Dp: 15 -> 24 (Simple DP)
+Dp: 15 -> 24 (Simple DP) 
     25 -> 33 (Subarray DP)
     34 -> 54(Partition Dp)
 
@@ -12,9 +12,9 @@ Target : 47->50
          90->107
 
 Two Pointer:
-Target : 9-16
-         17->29
-         30->42
+Target : 10-16(3 days)
+         17->29(4 days)
+         30->42 (4 days)
 
 Graph
 Target : 1->10
