@@ -5,14 +5,14 @@ Dp: 15 -> 24 (Simple DP)
 
 Hashing
 TODO : 32
-Target : 35->50
+Target : 47->50
          51->60
          61->75
          76->90
          90->107
 
 Two Pointer:
-Target : 1-16
+Target : 9-16
          17->29
          30->42
 
