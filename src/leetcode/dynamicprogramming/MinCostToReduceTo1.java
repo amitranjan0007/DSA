@@ -43,18 +43,12 @@ public class MinCostToReduceTo1 {
         for(int i=2;i<=n;i++){//start from target 2 and go upto desired target
              int numReduceBy1= Y+dp[i-1];
 
-             int numReduceBy3= Integer.MAX_VALUE;
-             if((i)%3==0){
-                 numReduceBy3=Z+dp[i/3];
-             }
-            int numReduceBy5= Integer.MAX_VALUE;
-            if(i%5==0){
-                numReduceBy5=B+dp[i/5];
-            }
-            int numReduceBy7= Integer.MAX_VALUE;
-            if(i % 7 == 0){
-                numReduceBy7=X+dp[i/7];
-            }
+             int numReduceBy3= (i%3==0) ? Z+dp[i/3]:Integer.MAX_VALUE;
+
+            int numReduceBy5=(i%5==0)?B+dp[i/5]: Integer.MAX_VALUE;
+
+            int numReduceBy7=(i % 7)==0? X+dp[i/7]:Integer.MAX_VALUE;
+
             dp[i]=Math.min(Math.min(Math.min(numReduceBy1,numReduceBy3),numReduceBy5),numReduceBy7);;
         }
         return dp[n];//ans lie on last target

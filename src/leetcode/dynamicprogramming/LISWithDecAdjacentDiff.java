@@ -6,7 +6,10 @@ import java.util.Scanner;
 public class LISWithDecAdjacentDiff {
     //Problem Link: https://leetcode.com/problems/longest-subsequence-with-decreasing-adjacent-difference/
     public static void main(String[] args) {
-        longestSubsequence();
+        //longestSubsequence();
+        int[] arr={6,5,3,4,2,1};
+
+        longestSubsequenceOptimal(arr);
     }
     public static void longestSubsequence() {
         /*
@@ -66,5 +69,39 @@ public class LISWithDecAdjacentDiff {
             }
         }
         System.out.println(result);
+    }
+
+    public static void longestSubsequenceOptimal(int[] arr) {
+        int n=arr.length;
+        int[][] dp= new int[301][301];
+        int[][] suffixMax= new int[301][301];
+        int ans = 1;
+
+        for (int num : arr) {
+            if (dp[num][0] < 1) {
+                dp[num][0] = 1;
+            }
+
+            for (int prevNum = 1; prevNum <= 300; prevNum++) {
+                int dNew = Math.abs(num - prevNum);
+                int bestChain = suffixMax[prevNum][dNew];
+
+                if (bestChain > 0) { //continue
+                    dp[num][dNew] = Math.max(dp[num][dNew], bestChain + 1);
+                } else {
+                    if (suffixMax[prevNum][0] > 0) { //fresh but prevNum should exsts
+                        dp[num][dNew] = Math.max(dp[num][dNew], 2);
+                    }
+                }
+
+                ans = Math.max(ans, dp[num][dNew]);
+            }
+
+            suffixMax[num][299] = dp[num][299];
+            for (int d = 298; d >= 0; d--) {
+                suffixMax[num][d] = Math.max(suffixMax[num][d + 1], dp[num][d]);
+            }
+        }
+        System.out.println(ans);
     }
 }

@@ -1,5 +1,7 @@
 package leetcode.dynamicprogramming;
 
+import java.util.Scanner;
+
 public class MinStepToReachNVERYIMPORTANT {
     public static void main(String[] args) {
         int res=minStep(6);
@@ -8,11 +10,7 @@ public class MinStepToReachNVERYIMPORTANT {
         //follow up question from uber
         int res1=minStepFollowUp(5);
         System.out.println(res1);
-
-       // int arr[]= {2,10,8,-5,-10,5};
-        int arr[]= {2,-100,8,5,0};
-        int res2=minCostFollowUpThird(arr);
-        System.out.println(res2);
+        minCostFollowUpThird();
     }
 
     private static int minStep(int n){
@@ -84,9 +82,18 @@ public class MinStepToReachNVERYIMPORTANT {
         return dp[n];
     }
 
-    private static int minCostFollowUpThird(int[] arr){
 
-        /*
+
+
+    private static void minCostFollowUpThird(){
+         /*
+         int arr[]= {2,5,8}; output is 10
+         int arr[]= {2,-100,8,5,0}; output is -85
+         arr={2,10,8,-5,-10,5 } output is 0
+
+
+
+
         An array of costs was given.
         You always start at index 1.
         You can either take two jumps forward or one jump backward. If you land on a particular index,
@@ -139,27 +146,29 @@ public class MinStepToReachNVERYIMPORTANT {
 
 
         * */
-        int n = arr.length - 1; // Adjust for 1-based indexing
-        int[][] dp = new int[n + 1][3];
-        int INF = 100000000;
-        // Initialize base cases
-        dp[1][2] = arr[1]; // Cost of starting at index 1
-        dp[1][1] = INF; // Can't move backward from index 1
-        dp[2][2] = INF; // Can't jump forward by 2 from index 1
-        dp[2][1] = dp[1][2] + arr[2] + arr[3]; // Cost to move back to index 2 from 3
+        Scanner scanner=new Scanner(System.in);
+        int n=scanner.nextInt();
+        int[] arr=new int[n+1];
+           for(int i=1;i<=n;i++){
+               arr[i]=scanner.nextInt();
+           }
+        int dp[][]=new int[n+1][2];
+        int INF=100000;
 
-        // Fill the DP table
-        for (int i = 3; i <= n - 1; i++) {
-            dp[i][2] = arr[i] + Math.min(dp[i - 2][1], dp[i - 2][2]); // Forward by 2
-            dp[i][1] = arr[i] + arr[i + 1] + dp[i - 1][2]; // Backward from i+1
+        dp[1][0] = arr[1];
+        dp[1][1] = INF;
+        dp[2][0] = INF;
+        dp[2][1] = dp[1][0] + arr[2] + arr[3];
+
+        for(int i=3;i<=n-1;i++){
+            dp[i][0]=arr[i]+Math.min(dp[i-2][0],dp[i-2][1]);
+            dp[i][1]=arr[i]+arr[i+1]+dp[i-1][0];
+
         }
 
-        // Handle the last index and beyond
-        dp[n][2] = arr[n] + Math.min(dp[n - 2][1], dp[n - 2][2]); // Forward to index n
-        dp[n][1] = INF; // Can't go back from beyond n
-
-        // Find the minimum cost
-        return Math.min(Math.min(dp[n][2], dp[n - 1][2]), dp[n - 1][1]);
-
+        dp[n][0] = arr[n] + Math.min(dp[n-2][0],dp[n-2][1]);
+        dp[n][1] = 100000000 ;
+        int res=Math.min(Math.min(dp[n][0],dp[n-1][0]),dp[n-1][1]);
+        System.out.println(res);
     }
 }
