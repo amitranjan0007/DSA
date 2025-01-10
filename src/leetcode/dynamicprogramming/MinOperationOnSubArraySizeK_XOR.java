@@ -148,50 +148,6 @@ public class MinOperationOnSubArraySizeK_XOR {
         System.out.println(dp[(int)k][0]);
 
     }
-  static void check(){
-      Scanner sc = new Scanner(System.in);
-      long n = sc.nextLong();
-      long k = sc.nextLong();
-
-      // Input array and modulo group hash map
-      long[] b = new long[(int) n + 1];
-      Map<Long, Map<Long, Long>> g = new HashMap<>();
-
-      for (long i = 0; i < k + 1; i++) {
-          g.put(i, new HashMap<>());
-      }
-
-      for (long i = 1; i <= n; i++) {
-          b[(int) i] = sc.nextLong();
-          long p = i % k;
-          g.get(p).put(b[(int) i], g.get(p).getOrDefault(b[(int) i], 0L) + 1);
-      }
-
-      // Declare and initialize dp array
-      long[][] dp = new long[(int) (k + 1)][64];
-      for (long[] row : dp) {
-          Arrays.fill(row, Long.MAX_VALUE);
-      }
-      dp[0][0] = 0; // Base case: 0 elements and XOR 0 costs 0
-
-      // Populate dp table
-      for (int i = 1; i <= k; i++) {
-          for (int goalXor = 0; goalXor <= 63; goalXor++) {
-              long total = (n - i) / k + 1;
-              for (int lastElement = 0; lastElement <= 63; lastElement++) {
-                  if (dp[i - 1][goalXor ^ lastElement] != Long.MAX_VALUE) {
-                      dp[i][goalXor] = Math.min(dp[i][goalXor],
-                              dp[i - 1][goalXor ^ lastElement] + total - g.get((long) (i % k)).getOrDefault((long) lastElement, 0L));
-                  }
-              }
-          }
-      }
-
-      // Output result
-      System.out.println(dp[(int) k][0]);
-
-      sc.close();
-  }
 
 }
 
