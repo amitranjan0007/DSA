@@ -6,7 +6,8 @@ public class CountNumberOfPalindromicSubstring_followup {
     public static void main(String[] args) {
         //countNumberOfPalindromicSubstring();
         //maxLengthOfPalindromicSubstring();
-        countNumberOfPalindromicSubsequence();
+       // countNumberOfPalindromicSubsequence();
+        countNumberOfPalindromicSubArrayInRange();//if you pass the range between L..R , you will get the given range is palindrome or not
     }
     private static void countNumberOfPalindromicSubstring(){
         Scanner scanner=new Scanner(System.in);
@@ -200,5 +201,61 @@ public class CountNumberOfPalindromicSubstring_followup {
         }
         System.out.println(dp[0][n-1]);
     }
+
+    private static void countNumberOfPalindromicSubArrayInRange(){
+
+        Scanner scanner=new Scanner(System.in);
+        String s=scanner.next();
+        int i=0,j=0,k=0;
+        int n=s.length();
+        //dp[i][j]-> is substring palindrome which start's at i & end at i
+        int dp[][]=new int[n][n];
+        int dp1[][]=new int[n+1][n+1];
+
+        //1-length
+        while(i<n){
+            dp[i][i]=1;
+            dp1[i][i]=1;
+            i++;
+        }
+
+        i=0;
+        //2 length substring
+        while(i<n-1){
+            if(s.charAt(i)==s.charAt(i+1)){
+                dp[i][i+1]=1;
+                dp1[i][i+1]=3;
+            }else{
+                dp1[i][i+1]=2;
+            }
+            i++;
+        }
+
+        //find for length 3,4,5 .......n
+        /*
+           0 1 2 3 4 5
+        *  4 7 3 9 6 3
+        *        |   |
+           6-3+1 ==> start point -> i=n-length+1, i should stop here
+           j=i+3-1 ==> i+l-1
+
+        * */
+        int length=3;
+
+        while(length<=n){// we have to compute for all the subarray length 3,4,5,...upto n
+            i=0;
+            while(i<n-length+1){
+                j=i+length-1;
+                if(s.charAt(i)==s.charAt(j) && dp[i+1][j-1]==1){
+                    dp[i][j]=1;
+                    dp1[i][j]=dp1[i][j-1]+dp1[i+1][j]-dp1[i+1][j-1]+1;
+                }else {
+                    dp1[i][j] = dp1[i][j - 1] + dp1[i + 1][j] - dp1[i + 1][j - 1];
+                }
+                i++;
+            }
+            length++;
+        }
+        System.out.println(dp1[0][n-1]);    }
 
 }
