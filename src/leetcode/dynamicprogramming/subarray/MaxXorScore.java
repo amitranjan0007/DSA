@@ -3,32 +3,19 @@ package leetcode.dynamicprogramming.subarray;
 import java.util.Scanner;
 
 public class MaxXorScore {
+    /*
+    Input Format
+        7
+        5
+        0 3
+        1 5
+        2 4
+        2 6
+        5 6
+        0 7 3 2 8 5 1
+* */
     public static void main(String[] args) {
         maxXorInRangeFollowUp();
-    }
-
-    private static void maxXorInRange(){
-        Scanner scanner=new Scanner(System.in);
-        int n=scanner.nextInt();
-
-        int b[]=new int[n+1];
-        int dp[][]=new int[n+1][n+1];
-        for(int i=1;i<=n;i++){
-            b[i]=scanner.nextInt();
-        }
-
-        for(int i=1;i<=n;i++){
-            dp[i][i]=b[i];// for the last element we have to leave like this means start with i & end at i the xor will be b[i]
-        }
-
-        int length=2;
-        while(length<=n){
-            for(int i=0;i<n-length+1;i++){
-                int j=i+length-1;
-                dp[i][j]=dp[i][j-1]^dp[i+1][j];
-            }
-            length++;
-        }
     }
 
     private static void maxXorInRangeFollowUp(){
@@ -37,6 +24,7 @@ public class MaxXorScore {
         int numberOfQuery = scanner.nextInt();
         int[][] query = new int[numberOfQuery][2];
 
+        //storing query
         for (int i = 0; i < numberOfQuery; i++) {
             int l = scanner.nextInt();
             int r = scanner.nextInt();
@@ -45,8 +33,8 @@ public class MaxXorScore {
         }
 
         int[] b = new int[n + 1];
+        int[][] answer = new int[n + 1][n + 1];
         int[][] dp = new int[n + 1][n + 1];
-        int[][] dp1 = new int[n + 1][n + 1];
 
         // Read the elements into array b
         for (int i = 1; i <= n; i++) {
@@ -55,8 +43,8 @@ public class MaxXorScore {
 
         // Initialize dp for length 1 subarrays (i.e., just the elements themselves)
         for (int i = 1; i <= n; i++) {
-            dp[i][i] = b[i];
-            dp1[i][i] = b[i];
+            answer[i][i] = b[i]; //dp store the  xor of subArray
+            dp[i][i] = b[i]; // dp store the max xor in subArray of subArray
         }
 
         // Calculate the XOR for subarrays of length 2 and greater
@@ -64,30 +52,33 @@ public class MaxXorScore {
         while (length <= n) {
             for (int i = 1; i <= n - length + 1; i++) {
                 int j = i + length - 1;
-                dp[i][j] = dp[i][j - 1] ^ dp[i + 1][j];
+                answer[i][j] = answer[i][j - 1] ^ answer[i + 1][j];
             }
             length++;
         }
 
         // Calculate the max XOR for subarrays of length 2 and greater
         length = 2;
+
+        //TC:O(N^2) // But Not working for some range
 //        while (length <= n) {
 //            for (int i = 1; i <= n - length + 1; i++) {
 //                int j = i + length - 1;
-//                dp1[i][j] = Math.max(dp1[i][j], Math.max(dp[i][j], Math.max(dp[i][j-1], dp[i+1][j])));
+//                dp[i][j] = Math.max(dp[i][j], Math.max(answer[i][j], Math.max(answer[i][j-1], answer[i+1][j])));
 //            }
 //            length++;
 //        }
 
+        //TC:O(N^3)
         while(length<=n){
             for (int i = 1; i <= n - length + 1; i++) {
                 int j = i + length - 1;
-                dp1[i][j] = dp[i][j];
+                dp[i][j] = answer[i][j];
 
                 // Try all splits to find the maximum XOR
                 for (int k = i; k < j; k++) {
-                    dp1[i][j] = Math.max(dp1[i][j], dp1[i][k]); // Left subarray
-                    dp1[i][j] = Math.max(dp1[i][j], dp1[k + 1][j]); // Right subarray
+                    dp[i][j] = Math.max(dp[i][j], dp[i][k]); // Left subarray
+                    dp[i][j] = Math.max(dp[i][j], dp[k + 1][j]); // Right subarray
                 }
             }
             length++;
@@ -95,8 +86,8 @@ public class MaxXorScore {
 
         // Process the queries
         for (int[] q : query) {
-            // Adjust indices because queries are 0-based, and dp1 uses 1-based indexing
-            System.out.println(dp1[q[0] + 1][q[1] + 1]);
+            // Adjust indices because queries are 0-based, and dp uses 1-based indexing
+            System.out.println(dp[q[0] + 1][q[1] + 1]);
         }
     }
     private static int maxi(int a,int b,int c){
