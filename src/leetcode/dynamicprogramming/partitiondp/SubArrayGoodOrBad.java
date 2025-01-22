@@ -5,6 +5,12 @@ import java.util.stream.IntStream;
 
 public class SubArrayGoodOrBad {
     /*
+      Question: https://www.linkedin.com/feed/update/urn:li:activity:7206999663189700609/
+
+
+      https://drive.google.com/file/d/1N7B5FVuhdqBe_mlSerPXdTXViT6oDrib/view
+      https://drive.google.com/file/d/1Z3TpgLHO7fmttQ5wWWTtx2lizamy3t7P/view
+      https://drive.google.com/file/d/1CKKTCK8naFkj3_Q38UwgN-0Ngqc5Qy-q/view
 
     * **/
     public static void main(String[] args) {

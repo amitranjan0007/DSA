@@ -1,6 +1,7 @@
 package leetcode.dynamicprogramming.subarray;
 
-public class GenerateAllSubstringOfString {
+public class CountTheNumberOfSubstringsWithDominantOnes {
+    //Problem Link : https://leetcode.com/problems/count-the-number-of-substrings-with-dominant-ones/description/
     public static void main(String[] args) {
         String s="101101";
         numberOfSubstringsOptimal(s);

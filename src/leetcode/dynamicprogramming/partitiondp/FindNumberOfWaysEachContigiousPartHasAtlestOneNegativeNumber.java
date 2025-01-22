@@ -3,6 +3,17 @@ package leetcode.dynamicprogramming.partitiondp;
 import java.util.Scanner;
 
 public class FindNumberOfWaysEachContigiousPartHasAtlestOneNegativeNumber {
+    /*
+      Find the number of partitions of an array such that each contiguous partition consists of at least one negative number.
+        eg. [-2,1,-3] has these possible partitions :
+        -> [-2,1][-3]
+        -> [-2][1 -3]
+        ->[-2 1 -3]
+        https://drive.google.com/file/d/1H3bCSzFuMR3aOrlfqx01gp5bUvwS2fiT/view
+        https://drive.google.com/file/d/1d2SEr8_nRVC3CuuMhuaIEx0caknF8ARS/view
+        https://drive.google.com/file/d/1TPupjB8iSxnf_CjZqN-c4d8KfXpZeury/view
+
+    * */
     public static void main(String[] args) {
         /*
         [-2 1 -3 -4]
