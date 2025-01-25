@@ -14,8 +14,11 @@ public class LengthOfLargestSubarrayLessThenK {
         sortedSet.add('a');
         sortedSet.add('a');
         sortedSet.add('b');
-        sortedSet.remove('a');
-        System.out.println(sortedSet.first()+""+sortedSet.last());
+       // sortedSet.remove('a');
+        for(Character c:sortedSet){
+            System.out.print(c+" ");
+        }
+       // System.out.println(sortedSet.first()+""+sortedSet.last());
 
     }
 
