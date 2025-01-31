@@ -50,7 +50,7 @@ public class Advitiya_Security_Vault_CodeChef {
            if(b[i]==0 && b[n-i-1]==0){
                totalPalindrome=(totalPalindrome*k)%m;
            }
-           else if(b[i] == 0 || b[n - i - 1] == 0){
+           else if((b[i] == 0 && b[n - i - 1] != 0) || (b[i] != 0 && b[n - i - 1] == 0)){
                totalPalindrome*=1;
            }
            else if(b[i]==b[n-i-1]){
