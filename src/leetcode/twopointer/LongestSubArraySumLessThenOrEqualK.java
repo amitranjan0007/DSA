@@ -2,7 +2,7 @@ package leetcode.twopointer;
 
 import java.util.Deque;
 import java.util.LinkedList;
-
+//https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/submissions/1523409902/
 public class LongestSubArraySumLessThenOrEqualK {
     public static void main(String[] args) {
         int[]b={10,1,2,4,7,2};
