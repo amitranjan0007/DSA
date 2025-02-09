@@ -294,9 +294,6 @@ public class FindShortestDistance_Infected_Nodes_Atlassian_OA {
 
         while(!q.isEmpty()){
             int currNode=q.poll();
-            if(currNode==10 || currNode==5){
-                System.out.println(" ");
-            }
             for(int nbr:adjList.get(currNode)){
                 if(!visited[nbr]){
                     if((1+level[currNode])<=k){
