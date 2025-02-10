@@ -46,7 +46,7 @@ public class CreateGraph_Basics {
     }
 
     private static void CreateGraphUsingMatrix(){
-        //sc: n*n tc : n
+        //sc: n*m tc : n
          int n=scanner.nextInt();
          int m=scanner.nextInt();
          int[][] graph=new int[n+1][n+1];
@@ -60,7 +60,7 @@ public class CreateGraph_Basics {
     }
 
     private static void CreateGraphUsingAdjacencyList(){
-        //sc: 2E tc : n
+        //sc: n+m tc : n
         int n=scanner.nextInt();
         int m=scanner.nextInt();
         List<List<Integer>> graph=new ArrayList<>();
