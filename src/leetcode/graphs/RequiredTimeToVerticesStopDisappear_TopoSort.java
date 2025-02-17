@@ -5,8 +5,9 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Scanner;
 /*
-
+Problem-10
 https://www.desiqna.in/15921/microsoft-oa-september-2023-freshers-hiring-sde1-set-116
+https://drive.google.com/file/d/1AFkv-cLfKeXCy3P_sGCvzGz1u7IA3YlS/view
 
 7 5
 0 1 2 4 5
