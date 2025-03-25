@@ -45,7 +45,7 @@ public class TwoColors_CodeChef_24_March {
             map.put(b[i],map.getOrDefault(b[i],0));
         }
 
-        int[] prefix = new int[target + 2];
+        int[] prefix = new int[target+1];
         prefix[0] = target;
         prefix[1] = target;
         for (int k =2; k <=target; k++) {
