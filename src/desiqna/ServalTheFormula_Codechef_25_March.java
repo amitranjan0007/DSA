@@ -8,13 +8,13 @@ public class ServalTheFormula_Codechef_25_March {
         scanner=new Scanner(System.in);
         int t=scanner.nextInt();
         while(t-->0){
-            int x=scanner.nextInt();
-            int y=scanner.nextInt();
+            long x=scanner.nextInt();
+            long y=scanner.nextInt();
             findTheValueOfK(x,y);
         }
     }
 
-    private static void findTheValueOfK(int x, int y) {
+    private static void findTheValueOfK(long x, long y) {
         long k=-1;
         long value=x&y;
         if(value==0){
@@ -37,7 +37,7 @@ public class ServalTheFormula_Codechef_25_March {
         System.out.println(k);
     }
 
-    private static long findMSBBit(int num) {
+    private static long findMSBBit(long num) {
         if (num == 0) return 0;
         long pos=-1;
         while(num!=0){
