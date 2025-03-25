@@ -10,13 +10,13 @@ public class TwoColors_CodeChef_24_March {
         int t=scanner.nextInt();
         while(t-->=1){
 
-            int target=scanner.nextInt();
+            int n=scanner.nextInt();
             int m=scanner.nextInt();
             int b[]=new int[m+1];
                for(int i=1;i<=m;i++){
                    b[i]=scanner.nextInt();
                }
-           int res= numberOfPairsSubOptimal(b,target);
+           int res= numberOfPairsSubOptimal(b,n,m);
             System.out.println(res);
         }
     }
@@ -39,24 +39,38 @@ public class TwoColors_CodeChef_24_March {
         return count;
     }
 
-    private static int numberOfPairsSubOptimal(int[]b,int target){
+    private static int numberOfPairsSubOptimal(int[]b,int n ,int m){
         HashMap<Integer,Integer> map=new HashMap<>();
         for(int i=1;i<b.length;i++){
             map.put(b[i],map.getOrDefault(b[i],0));
         }
 
-        int[] prefix = new int[target+1];
-        prefix[0] = target;
-        prefix[1] = target;
-        for (int k =2; k <=target; k++) {
+        int[] prefix = new int[n+1];
+        prefix[0] = n;
+        prefix[1] = n;
+        for (int k =2; k <=n; k++) {
             prefix[k] = prefix[k - 1] - map.getOrDefault(k-1,0);
         }
 
         int total = 0;
-        for (int k = 1; k <= b.length-1; k++) {
-           total=total+prefix[target-k];
+
+        for(int j=1;j<=n;j++){
+            for(int right=1;right<=b[j];right++){
+               if(m-right>=0) total=total+prefix[m-right];
+            }
         }
+
         return total;
     }
 
 }
+/*
+3
+5 2
+2 4
+5 2
+3 4
+12 3
+5 9 8
+
+* */
