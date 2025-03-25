@@ -1,7 +1,7 @@
 package desiqna;
 
 import java.util.Scanner;
-
+//https://codeforces.com/contest/2085/problem/C
 public class ServalTheFormula_Codechef_25_March {
     private static Scanner scanner;
     public static void main(String[] args) {
