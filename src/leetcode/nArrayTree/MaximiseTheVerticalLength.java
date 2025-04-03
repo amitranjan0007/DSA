@@ -3,6 +3,7 @@ package leetcode.nArrayTree;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+//https://www.youtube.com/watch?v=dKqvtj3gZXA
 public class MaximiseTheVerticalLength {
     private static int[] nodeValues;
     private static boolean[] visited;
